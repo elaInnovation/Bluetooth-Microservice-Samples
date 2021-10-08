@@ -42,7 +42,6 @@ namespace BlueBaseMicroservice_Sample.Views
             this.cbbFilterOptions.Items.Add(FilterType.MatchString);
             this.cbbFilterOptions.Items.Add(FilterType.WhiteList);
             this.cbbFilterOptions.Items.Add(FilterType.MaximumRssi);
-            //this.cbbFilterOptions.Items.Add(FilterType.ConnectableOnly);
             this.cbbFilterOptions.Items.Add(FilterType.ManufacturerId);
             this.cbbFilterOptions.SelectedIndex = 0;
         }
@@ -274,7 +273,6 @@ namespace BlueBaseMicroservice_Sample.Views
                             bleFilter.FilterMaximumRssi = rssiMaxFilter;
                         }
                     }
-                    //else if (this.cbbFilterOptions.SelectedItem.Equals(FilterType.ConnectableOnly)) bleFilter.FilterOnlyConnectable = true;
                     else if (this.cbbFilterOptions.SelectedItem.Equals(FilterType.ManufacturerId)) bleFilter.FilterOnlyManufacturerId = true;
                 }
 
