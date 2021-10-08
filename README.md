@@ -15,6 +15,6 @@ This sample will be available soon ...
 
 [here_ela_website]: https://elainnovation.com
 
-[here_ela_sdk]: https://elainnovation.com
+[here_ela_sdk]: https://github.com/elaInnovation/ELA-Microservices
 
 [here_ela_nuget_msclient]: https://www.nuget.org/packages/elaMicroserviceClient/
