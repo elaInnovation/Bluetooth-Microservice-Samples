@@ -9,7 +9,7 @@ Our sample are available in different langages:
 We published some sample for Microsoft Visual Studio and C# langage. These sample try to give you an overview of the different way to integrate our microservice, our library to get the information of the Bluetooth Base Microservice on client side. We continue to publish sample on this repository. The different sample that you can find here are:
 
 - **BlueBaseMicroservice-Sample**: this sample use C# and WPF to integrate the [Nuget Package elaMicroserviceClient][here_ela_nuget_msclient] in the application to get the data from Bluetooth Base Micorservice.
-- 
+
 ## Python
 This sample will be available soon ...
 
