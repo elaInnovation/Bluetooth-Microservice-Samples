@@ -7,3 +7,6 @@
 /C#/BlueBaseMicroservice-Sample-Grpc/obj
 /Python/BlueBaseMicroservice-Sample-Grpc/__pycache__/
 /Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/__pycache__/
+/Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/Protos/Authentication/__pycache__/
+/Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/Protos/Bluetooth/__pycache__/
+/Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/Protos/Common/__pycache__/
