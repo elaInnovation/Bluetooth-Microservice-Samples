@@ -12,7 +12,8 @@ We published some sample for Microsoft Visual Studio and C# langage. These sampl
 - **BlueBaseMicroservice-Sample-Grpc**: this sample use C# and WPF to integrate [elaMicroserviceGrpc project][here_ela_msgrpc] as a submodule in the application to get the data from Bluetooth Base Microservice.
 
 ## Python
-This sample will be available soon ...
+We published some sample for python langage. This sample try to give you an overview of the different way to integrate our microservice to get the information of the Bluetooth Base Microservice on client side.
+- **BlueBaseMicroservice-Sample-Grpc**: this sample coded in Python langage to integrate [elaMicroserviceGrpc project][here_ela_msgrpc] as a submodule in the application to get the data from Bluetooth Base Microservice.
 
 [here_ela_website]: https://elainnovation.com
 
