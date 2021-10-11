@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+package ElaAuthentication;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+
+// The BackendConfig service definition.
+service ElaAuthenticationPublicService {
+
+	// RPC definition
+
+	// main login function
+	rpc Login(ElaAuthenticationRequest) returns (ElaAuthenticationResponse) {}
+	rpc Logout(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+	// check authentication function
+	rpc CheckAuthorization(ElaManagerUserRequest) returns (ElaManagerUserResponse) {}
+
+	// main users function
+	rpc CreateUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
+	rpc GetUsers(ElaManagerUserRequest) returns (ElaAuthenticationUserList) {}
+	rpc UpdateUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
+	rpc DeleteUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
+
+	///////////////////////////////////////////////////////////////////////////////////////////
+	// ADDITIONNAL FUNCTION LICENCE
+	// main licence management function
+	rpc LoadLicence(ElaLicenceRequest) returns (ElaCommon.ElaError) {}
+	rpc RevokeLicence(ElaLicenceRequest) returns (ElaCommon.ElaError) {}
+	rpc CheckUserRights(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}
+	rpc EnrollInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
+	rpc GetEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
+	rpc ReleasedEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
+	rpc getNumberLicence(ElaCommon.ElaInputBaseRequest) returns (ElaNumberLicenceResponse) {}
+	//
+	// RFU to see for the next updates
+	// rpc CypherToken(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}	
+	// rpc UncypherToken(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}	
+	///////////////////////////////////////////////////////////////////////////////////////////
+}
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+// ADDITIONNAL FUNCTION LICENCE
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaLicenceRequest
+ * \brief request to manage the licence operation into the module 
+ */
+message ElaLicenceRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	repeated string datas = 2;
+	repeated string signs = 3;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaUserRight
+ * \brief object associated to an user right
+ */
+message ElaUserRight {
+
+	string feature = 1;
+	uint32 enrolled_instances = 2;
+	uint32 maximum_instances = 3;
+	int64 expiration_date = 4;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaUserRightsRequest
+ * \brief request the access to the user rights
+ */
+message ElaUserRightsRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string user = 2;
+	string feature = 3;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaUserRightsResponse
+ * \brief response to handle data from 
+ */
+message ElaUserRightsResponse {
+
+	ElaCommon.ElaError error = 1;
+	ElaUserRightsRequest request = 2;
+	bool isAllowed = 3;
+	repeated ElaUserRight rights = 4;
+}
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationRequest
+ * \brief information relative the authentication functions
+ */
+message ElaAuthenticationRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string login = 2;
+	string certificate = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationResponse
+ * \brief information for a result to an authentication request
+ */
+message ElaAuthenticationResponse {
+
+	ElaCommon.ElaError error = 1;
+	string sessionId = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaManagerUserRequest
+ * \brief ELA Manage User Request
+ */
+message ElaManagerUserRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaAuthenticationUser user = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaManagerUserRequest
+ * \brief ELA Manage User Request
+ */
+message ElaManagerUserResponse {
+
+	ElaCommon.ElaError error = 1;
+	ElaAuthenticationUser user = 2;
+	bool allowedUser = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationUserList
+ * \brief ELA Manage User Request
+ */
+message ElaAuthenticationUserList {
+
+	ElaCommon.ElaError error = 1;
+	ElaAuthenticationRequest inputRequest = 2;
+	repeated ElaAuthenticationUser users = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationUser
+ * \brief ELA Authentication User
+ */
+message ElaAuthenticationUser {
+
+	string username = 1;
+	string password = 2;
+	string expirationdate = 3;
+	string role = 4;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaNumberLicenceResponse
+ * \brief response to a number licence request
+ */
+message ElaNumberLicenceResponse {
+
+       ElaCommon.ElaError error = 1;
+       uint32 numberLicence = 2;
+}
+///////////////////////////////////////////////////////////

@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package ElaCommon;
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaInputRequest
+ * \brief Base request 
+ */
+message ElaInputBaseRequest {
+
+	string client_id = 1;
+	string session_id = 2;
+	string request_id = 3;
+	string client_ip_address = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ServiceInformations
+ * \brief service information to add user specific informations
+ */
+message ServiceInformations {
+
+	string user_specific_name = 1;
+	string user_specific_informations = 2;
+	string user_specific_description = 3;
+	string user_specific_gps_coordinate = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaUserInformationsRequest
+ * \brief user information request definition 
+ */
+message ElaUserInformationsRequest {
+
+	ElaInputBaseRequest request = 1;
+	ServiceInformations user_information = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaError
+ * \brief basic error associated to a service
+ */
+message ElaError {
+
+	uint32 error = 1;
+	string lastErrorMessage = 2;
+	string lastExceptionMessage = 3;
+	string clientId = 4;
+	string requestId = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceInfos
+ * \brief information relative to the microservice
+ */
+message ElaMicroserviceInfos {
+
+	string service_version = 1;
+	string service_name = 2;
+	string proto_version = 3;
+	string target_OS = 4;
+	string connector_name = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceStatistics
+ * \brief information relative to the microservice function statistic use
+ */
+message ElaMicroserviceStatistics {
+
+	string stats_function_call = 1;
+	string stats_timing = 2;
+	string stats_error_handling = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceItem
+ * \brief microservice item to handle microservice listing and instanciation information
+ */
+message ElaMicroserviceItem {
+
+	string hostname = 1;
+	uint32 port = 2;
+	string login = 3;
+	string password = 4;
+	string microservice_username = 5;
+	string microservice_id = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaLogRequest
+ * \brief log request
+ */
+message ElaLogRequest {
+
+	ElaInputBaseRequest request = 1;
+	bool AllValuesRequired = 2;
+	uint32 max_log_values = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaLogResponse
+ * \brief log response
+ */
+message ElaLogResponse {
+
+	ElaError error = 1;
+	repeated string logValues = 2;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaCloseStreamingRequest 
+ * \brief common close streaming request
+ */
+message ElaCloseStreamingRequest {
+
+	ElaError error = 1;
+	bool close_steaming_requiered = 2;
+	string clientId = 3;	
+}
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaConfigurationRequest
+ * \brief configuration request to redefinee the authentication module 
+ */
+message ElaConfigurationRequest {
+
+	ElaInputBaseRequest request = 1;
+	string hostname = 2;
+	uint32 port = 3;
+}
+///////////////////////////////////////////////////////////
