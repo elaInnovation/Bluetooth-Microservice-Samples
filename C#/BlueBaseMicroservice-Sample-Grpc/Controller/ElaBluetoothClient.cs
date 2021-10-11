@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading;
 using static ElaBluetooth.ElaBluetoothPublicService;
 
+/**
+ * \namespace BlueBaseMicroservice_Sample.Controller
+ * \brief namespace dedicated to the implementation of all object usefull to connect or use the communicaiton
+ */
 namespace BlueBaseMicroservice_Sample.Controller
 {
     /** \brief delegate fot data received */

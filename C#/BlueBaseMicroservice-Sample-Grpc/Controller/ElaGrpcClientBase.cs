@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using static ElaAuthentication.ElaAuthenticationPublicService;
 using static ElaBluetooth.ElaBluetoothPublicService;
 
+/**
+ * \namespace BlueBaseMicroservice_Sample.Controller
+ * \brief namespace dedicated to the implementation of all object usefull to connect or use the communicaiton
+ */
 namespace BlueBaseMicroservice_Sample.Controller
 {
     /**
@@ -67,6 +71,7 @@ namespace BlueBaseMicroservice_Sample.Controller
             this.m_strClientIP = GetLocalIPAddress();
         }
 
+        #region connection functions
         /** 
          * \fn connect 
          * \brief connection with grpc framework : connect with the initial configuration
@@ -77,7 +82,13 @@ namespace BlueBaseMicroservice_Sample.Controller
             return connect(Hostname, Port);
         }
 
-        /** \fn connect */
+        /** 
+         * \fn connect 
+         * \brief connection function to 
+         * \param [in] host : hostname of the service to connect
+         * \param [in] port : port to ensure the microservice connection
+         * \return error code
+         */
         public uint connect(string host, int port)
         {
             try
@@ -96,8 +107,19 @@ namespace BlueBaseMicroservice_Sample.Controller
             }
         }
 
+        /**
+         * \fn CreateGrpcClient
+         * \brief abstract function declaration to create a new instante of grpc client
+         */
         protected abstract void CreateGrpcClient(uint channelTestResult);
 
+        /**
+         * \fn CreateChannel
+         * \brief create a new GRPC hannel for the client context
+         * \param [in] host : hostname of the service to connect
+         * \param [in] port : port to ensure the microservice connection
+         * \return error code
+         */
         private uint CreateChannel(string host, int port)
         {
             try
@@ -136,17 +158,31 @@ namespace BlueBaseMicroservice_Sample.Controller
             }
         }
 
+        /**
+         * \fn disconnect
+         * \brief ensure the disconnection from the current channel created
+         * \return error code
+         */
         public uint disconnect()
         {
             var result = m_Channel.ShutdownAsync().Wait(CONNECTION_TIMEOUT_SECONDS * 1000);
             return result ? ErrorServiceHandlerBase.ERR_OK : ErrorServiceHandlerBase.ERR_KO;
         }
 
+        /**
+         * \fn isMicroserviceOnline
+         * \brief provded the connection status from the microservice
+         * \return status online (true) or offline (false)
+         */
         public bool isMicroserviceOnline()
         {
             return m_Channel != null && m_Channel.State == ChannelState.Ready;
         }
 
+        /**
+         * \fn ObserveState
+         * \brief function to watch the current grpc channel
+         */
         private bool ObserveState(Channel grpcChannel, Predicate<Channel> successCondition, int timeout = -1)
         {
             if (successCondition(grpcChannel)) return true;
@@ -163,7 +199,16 @@ namespace BlueBaseMicroservice_Sample.Controller
 
             return result;
         }
+        #endregion
 
+        #region authentication functions
+        /**
+         * \fn login
+         * \brief login function associated to the authentication process for ELA Microservices
+         * \param [in] login : user login
+         * \param [in] password : password associated to the user login
+         * \return error code
+         */
         public uint login(string login, string password)
         {
             try
@@ -207,6 +252,11 @@ namespace BlueBaseMicroservice_Sample.Controller
             }
         }
 
+        /**
+         * \fn logout
+         * \brief logout function associated to the authentication process for ELA Microservices
+         * \return error code
+         */
         public uint logout()
         {
             try
@@ -240,9 +290,11 @@ namespace BlueBaseMicroservice_Sample.Controller
                 return HandleClientException(ex);
             }
         }
+        #endregion
 
+        #region main function to manage request and response from services
         /**
-         * \fn 
+         * \fn getAbsoluteId
          * \brief getter on the absolute counter 
          * \return absolute counter value 
          */
@@ -278,6 +330,11 @@ namespace BlueBaseMicroservice_Sample.Controller
             return request;
         }
 
+        /**
+         * \fn HandleClientException
+         * \brief handle the client excemtion, use ela sofware common error handling
+         * \return the associated error code
+         */
         protected uint HandleClientException(Exception ex)
         {
             LoggerHandler.getInstance().Logger.add(new LogItem(ex));
@@ -288,6 +345,11 @@ namespace BlueBaseMicroservice_Sample.Controller
                 return ErrorServiceHandlerClient.ERR_UNHANDLED_EXCEPTION;
         }
 
+        /**
+         * \fn GetLocalIPAddress
+         * \brief getter on the local ip address
+         * \return value of the local ip address
+         */
         private string GetLocalIPAddress()
         {
             try
@@ -309,17 +371,15 @@ namespace BlueBaseMicroservice_Sample.Controller
             return string.Empty;
         }
 
-        /*
-        public UserAllowedResult checkUserCredentials(string username, string password)
-        {
-            return new UserAllowedResult(ErrorServiceHandlerBase.WARNING_NOT_YET_IMPLEMENTED, false);
-        }
-        */
-
+        /**
+         * \fn updateConfiguration
+         * \brief update the current configuraiton of the object
+         * \param [in] config : configuration associated to the object, update only if this one is an instance od CfgService
+         */
         public void updateConfiguration(object config)
         {
             if (config is CfgService cfg) m_ServiceConfig = cfg;
         }
-
+        #endregion
     }
 }
