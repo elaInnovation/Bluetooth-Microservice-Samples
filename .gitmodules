@@ -1,3 +1,6 @@
 [submodule "C#/BlueBaseMicroservice-Sample-Grpc/_ext_elaMicroserviceGrpc"]
 	path = "C#/BlueBaseMicroservice-Sample-Grpc/_ext_elaMicroserviceGrpc"
 	url = https://github.com/elaInnovation/elaMicroserviceGrpc.git
+[submodule "Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/ExtElaMicroserviceGrpc"]
+	path = Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/ExtElaMicroserviceGrpc
+	url = https://github.com/elaInnovation/elaMicroserviceGrpc.git

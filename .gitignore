@@ -5,3 +5,5 @@
 /C#/BlueBaseMicroservice-Sample-Grpc/.vs
 /C#/BlueBaseMicroservice-Sample-Grpc/bin
 /C#/BlueBaseMicroservice-Sample-Grpc/obj
+/Python/BlueBaseMicroservice-Sample-Grpc/__pycache__/
+/Python/BlueBaseMicroservice-Sample-Grpc/bluetooth/__pycache__/
