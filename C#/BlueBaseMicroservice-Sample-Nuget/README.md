@@ -35,7 +35,7 @@ To ensure to invoke all function from the API, you need to authenticate to the m
 - **login** : to send your login and password information and get a session id to invoke all other function from the API
 - **logout** : to release the session id and close the API
 
-** Invoke login function**
+**Invoke login function**
 ```C#   
 	uint errorCode = this.m_client.login(this.tbUserName.Text, this.pwdUser.Password);
 	if (0 != errorCode)
@@ -44,7 +44,7 @@ To ensure to invoke all function from the API, you need to authenticate to the m
 	}
 ```
 
-** Release with logout function**
+**Release with logout function**
 ```C#   
 	uint errorCode = this.m_client.logout();
 	if (0 != errorCode)
