@@ -37,7 +37,7 @@ Then, generate your interface and object files according to the proto files. Fro
 ```
 
 ## Execution
-You can run the sample by directly by calling the followinf command:
+You can run the sample by directly by calling the following command:
 ```bash
      $ python3 .\ElaBleBaseClientSample.py
  ```
