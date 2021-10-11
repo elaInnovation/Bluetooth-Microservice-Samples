@@ -2,3 +2,6 @@
 /C#/BlueBaseMicroservice-Sample-Nuget/bin
 /C#/BlueBaseMicroservice-Sample-Nuget/obj
 /C#/BlueBaseMicroservice-Sample-Nuget/BlueBaseMicroservice-Sample
+/C#/BlueBaseMicroservice-Sample-Grpc/.vs
+/C#/BlueBaseMicroservice-Sample-Grpc/bin
+/C#/BlueBaseMicroservice-Sample-Grpc/obj
