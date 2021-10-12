@@ -42,6 +42,29 @@ You can run the sample by directly by calling the following command:
      $ python3 .\ElaBleBaseClientSample.py
  ```
 
+## Sample information
+You will find the main application in file **ElaBleBaseClientSample.py**. This program implement functions from the interface. The two main function dedicated to the Authentication:
+- **login** :  to send your login and password information and get a session id to invoke all other function from the API
+- **logout** : to release the session id and close the API
+
+Then the other functions allow you to start and stop the scanner and get the scanned result:
+- **StartScanner**: start the bluetooth scanner, scanning in background al the devices seen in advertising
+- **GetData** : this function get the results from the Bluetooth scanner, called for polling
+- **StopScanner**: stop the background scanner
+```python
+    controller.Login()
+    #
+    # start and get data 
+    controller.StartScanner()
+    time.sleep(5)
+    datas = controller.GetData()
+    print(datas)
+    #
+    # stop scanner
+    controller.StopScanner()
+    controller.Logout()
+```
+
 [here_ela_website]: https://elainnovation.com
 
 [here_ela_sdk]:https://github.com/elaInnovation/ELA-Microservices
